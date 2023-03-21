@@ -1,0 +1,406 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище AcroDeminModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="flat">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="floor" Type="int" />
+          <Property Name="floor_apart" Type="int" />
+          <Property Name="date_build" Type="date" />
+          <Property Name="window_placement" Type="int" />
+          <Property Name="amount_rooms" Type="int" />
+          <Property Name="amount_toilet" Type="int" />
+          <Property Name="toilet_type" Type="int" />
+          <Property Name="have_cond" Type="bit" />
+          <Property Name="cad_price" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="market_price" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="rent_price" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="flat_status" Type="int" />
+          <Property Name="adress" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="house">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="adress" Type="nvarchar" MaxLength="50" />
+          <Property Name="rent_price" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="flat_status" Type="int" />
+        </EntityType>
+        <EntityType Name="login">
+          <Key>
+            <PropertyRef Name="login" />
+          </Key>
+          <Property Name="login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" />
+          <Property Name="role" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="status">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="toilet_type">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="window">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_flat_status">
+          <End Role="status" Type="Self.status" Multiplicity="0..1" />
+          <End Role="flat" Type="Self.flat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="status">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="flat">
+              <PropertyRef Name="flat_status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_flat_toilet_type">
+          <End Role="toilet_type" Type="Self.toilet_type" Multiplicity="0..1" />
+          <End Role="flat" Type="Self.flat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="toilet_type">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="flat">
+              <PropertyRef Name="toilet_type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_flat_window">
+          <End Role="window" Type="Self.window" Multiplicity="0..1" />
+          <End Role="flat" Type="Self.flat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="window">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="flat">
+              <PropertyRef Name="window_placement" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_house_status">
+          <End Role="status" Type="Self.status" Multiplicity="0..1" />
+          <End Role="house" Type="Self.house" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="status">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="house">
+              <PropertyRef Name="flat_status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище AcroDeminModelContainer">
+          <EntitySet Name="flat" EntityType="Self.flat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="house" EntityType="Self.house" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="login" EntityType="Self.login" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="status" EntityType="Self.status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="toilet_type" EntityType="Self.toilet_type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="window" EntityType="Self.window" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_flat_status" Association="Self.FK_flat_status">
+            <End Role="status" EntitySet="status" />
+            <End Role="flat" EntitySet="flat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_flat_toilet_type" Association="Self.FK_flat_toilet_type">
+            <End Role="toilet_type" EntitySet="toilet_type" />
+            <End Role="flat" EntitySet="flat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_flat_window" Association="Self.FK_flat_window">
+            <End Role="window" EntitySet="window" />
+            <End Role="flat" EntitySet="flat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_house_status" Association="Self.FK_house_status">
+            <End Role="status" EntitySet="status" />
+            <End Role="house" EntitySet="house" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AcroDeminModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="AcroDeminEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="flat" EntityType="AcroDeminModel.flat" />
+          <EntitySet Name="house" EntityType="AcroDeminModel.house" />
+          <EntitySet Name="login" EntityType="AcroDeminModel.login" />
+          <EntitySet Name="status" EntityType="AcroDeminModel.status" />
+          <EntitySet Name="sysdiagrams" EntityType="AcroDeminModel.sysdiagrams" />
+          <EntitySet Name="toilet_type" EntityType="AcroDeminModel.toilet_type" />
+          <EntitySet Name="window" EntityType="AcroDeminModel.window" />
+          <AssociationSet Name="FK_flat_status" Association="AcroDeminModel.FK_flat_status">
+            <End Role="status" EntitySet="status" />
+            <End Role="flat" EntitySet="flat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_flat_toilet_type" Association="AcroDeminModel.FK_flat_toilet_type">
+            <End Role="toilet_type" EntitySet="toilet_type" />
+            <End Role="flat" EntitySet="flat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_flat_window" Association="AcroDeminModel.FK_flat_window">
+            <End Role="window" EntitySet="window" />
+            <End Role="flat" EntitySet="flat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_house_status" Association="AcroDeminModel.FK_house_status">
+            <End Role="status" EntitySet="status" />
+            <End Role="house" EntitySet="house" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="flat">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="floor" Type="Int32" />
+          <Property Name="floor_apart" Type="Int32" />
+          <Property Name="date_build" Type="DateTime" Precision="0" />
+          <Property Name="window_placement" Type="Int32" />
+          <Property Name="amount_rooms" Type="Int32" />
+          <Property Name="amount_toilet" Type="Int32" />
+          <Property Name="toilet_type" Type="Int32" />
+          <Property Name="have_cond" Type="Boolean" />
+          <Property Name="cad_price" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="market_price" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="rent_price" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="flat_status" Type="Int32" />
+          <Property Name="adress" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="status" Relationship="AcroDeminModel.FK_flat_status" FromRole="flat" ToRole="status" />
+          <NavigationProperty Name="toilet_type1" Relationship="AcroDeminModel.FK_flat_toilet_type" FromRole="flat" ToRole="toilet_type" />
+          <NavigationProperty Name="window" Relationship="AcroDeminModel.FK_flat_window" FromRole="flat" ToRole="window" />
+        </EntityType>
+        <EntityType Name="house">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="adress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="rent_price" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="flat_status" Type="Int32" />
+          <NavigationProperty Name="status" Relationship="AcroDeminModel.FK_house_status" FromRole="house" ToRole="status" />
+        </EntityType>
+        <EntityType Name="login">
+          <Key>
+            <PropertyRef Name="login1" />
+          </Key>
+          <Property Name="login1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="status">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="flat" Relationship="AcroDeminModel.FK_flat_status" FromRole="status" ToRole="flat" />
+          <NavigationProperty Name="house" Relationship="AcroDeminModel.FK_house_status" FromRole="status" ToRole="house" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="toilet_type">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="flat" Relationship="AcroDeminModel.FK_flat_toilet_type" FromRole="toilet_type" ToRole="flat" />
+        </EntityType>
+        <EntityType Name="window">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="flat" Relationship="AcroDeminModel.FK_flat_window" FromRole="window" ToRole="flat" />
+        </EntityType>
+        <Association Name="FK_flat_status">
+          <End Type="AcroDeminModel.status" Role="status" Multiplicity="0..1" />
+          <End Type="AcroDeminModel.flat" Role="flat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="status">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="flat">
+              <PropertyRef Name="flat_status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_flat_toilet_type">
+          <End Type="AcroDeminModel.toilet_type" Role="toilet_type" Multiplicity="0..1" />
+          <End Type="AcroDeminModel.flat" Role="flat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="toilet_type">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="flat">
+              <PropertyRef Name="toilet_type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_flat_window">
+          <End Type="AcroDeminModel.window" Role="window" Multiplicity="0..1" />
+          <End Type="AcroDeminModel.flat" Role="flat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="window">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="flat">
+              <PropertyRef Name="window_placement" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_house_status">
+          <End Type="AcroDeminModel.status" Role="status" Multiplicity="0..1" />
+          <End Type="AcroDeminModel.house" Role="house" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="status">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="house">
+              <PropertyRef Name="flat_status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище AcroDeminModelContainer" CdmEntityContainer="AcroDeminEntities1">
+          <EntitySetMapping Name="flat">
+            <EntityTypeMapping TypeName="AcroDeminModel.flat">
+              <MappingFragment StoreEntitySet="flat">
+                <ScalarProperty Name="adress" ColumnName="adress" />
+                <ScalarProperty Name="flat_status" ColumnName="flat_status" />
+                <ScalarProperty Name="rent_price" ColumnName="rent_price" />
+                <ScalarProperty Name="market_price" ColumnName="market_price" />
+                <ScalarProperty Name="cad_price" ColumnName="cad_price" />
+                <ScalarProperty Name="have_cond" ColumnName="have_cond" />
+                <ScalarProperty Name="toilet_type" ColumnName="toilet_type" />
+                <ScalarProperty Name="amount_toilet" ColumnName="amount_toilet" />
+                <ScalarProperty Name="amount_rooms" ColumnName="amount_rooms" />
+                <ScalarProperty Name="window_placement" ColumnName="window_placement" />
+                <ScalarProperty Name="date_build" ColumnName="date_build" />
+                <ScalarProperty Name="floor_apart" ColumnName="floor_apart" />
+                <ScalarProperty Name="floor" ColumnName="floor" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="house">
+            <EntityTypeMapping TypeName="AcroDeminModel.house">
+              <MappingFragment StoreEntitySet="house">
+                <ScalarProperty Name="flat_status" ColumnName="flat_status" />
+                <ScalarProperty Name="rent_price" ColumnName="rent_price" />
+                <ScalarProperty Name="adress" ColumnName="adress" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="login">
+            <EntityTypeMapping TypeName="AcroDeminModel.login">
+              <MappingFragment StoreEntitySet="login">
+                <ScalarProperty Name="role" ColumnName="role" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="login1" ColumnName="login" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="status">
+            <EntityTypeMapping TypeName="AcroDeminModel.status">
+              <MappingFragment StoreEntitySet="status">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="AcroDeminModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="toilet_type">
+            <EntityTypeMapping TypeName="AcroDeminModel.toilet_type">
+              <MappingFragment StoreEntitySet="toilet_type">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="window">
+            <EntityTypeMapping TypeName="AcroDeminModel.window">
+              <MappingFragment StoreEntitySet="window">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
