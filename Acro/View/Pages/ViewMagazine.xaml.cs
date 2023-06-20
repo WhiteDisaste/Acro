@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Acro.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,7 @@ namespace Acro.View.Pages
         public ViewMagazine()
         {
             InitializeComponent();
+            LV.ItemsSource = Connect.entities.Magazin.ToList();
         }
     }
 }

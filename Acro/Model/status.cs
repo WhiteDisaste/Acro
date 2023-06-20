@@ -12,21 +12,18 @@ namespace Acro.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class status
+    public partial class Status
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public status()
+        public Status()
         {
-            this.flat = new HashSet<flat>();
-            this.house = new HashSet<house>();
+            this.Magazin = new HashSet<Magazin>();
         }
     
-        public int id { get; set; }
-        public string name { get; set; }
+        public int Id { get; set; }
+        public string Title { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<flat> flat { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<house> house { get; set; }
+        public virtual ICollection<Magazin> Magazin { get; set; }
     }
 }

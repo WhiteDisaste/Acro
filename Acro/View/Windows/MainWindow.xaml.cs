@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Menu = Acro.View.Windows.Menu;
 
 namespace Acro
 {
@@ -28,29 +29,28 @@ namespace Acro
         }
         private void au_btn_Click(object sender, RoutedEventArgs e)
         {
-            var usr = Connect.entities.login.Where(i => i.login1 == login_tbx.Text && i.password == password_pbx.Password).FirstOrDefault();
+            var usr = Connect.entities.Users.Where(i => i.Login == login_tbx.Text && i.Password == password_pbx.Password).FirstOrDefault();
 
             if (usr != null)
             {
-                if (usr.role == "rent")
-                {
-                    MessageBox.Show($"вы вошли как менеджер по аренде");
-                    ViewMarket r = new ViewMarket();
+                
+                    MessageBox.Show($"Добро пожаловать сотрудник");
+                    Menu r = new Menu();
                     r.Show();
                     this.Close();
-                }
-                else if (usr.role == "market")
-                {
-                    MessageBox.Show($"вы вошли как менеджер по продажам");
-                    Add a = new Add();
-                    a.Show();
-                    this.Close();
-                }
+                
             }
             else
             {
-                MessageBox.Show("ты кто такой?!");
+                MessageBox.Show("Ошибка данных!");
             }
+        }
+
+        private void reg_btn_Click(object sender, RoutedEventArgs e)
+        {
+            Authorization authorization = new Authorization();
+            authorization.Show();
+            Close();
         }
     }
 }

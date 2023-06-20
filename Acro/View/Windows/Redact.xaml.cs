@@ -23,7 +23,7 @@ namespace Acro.View.Windows
         public Redact()
         {
             InitializeComponent();
-            LV.ItemsSource = Connect.entities.flat.ToList();
+            //LV.ItemsSource = Connect.entities.flat.ToList();
         }
 
         private void exit_btn_Click(object sender, RoutedEventArgs e)

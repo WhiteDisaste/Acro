@@ -12,18 +12,28 @@ namespace Acro.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class window
+    public partial class Magazin
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public window()
+        public Magazin()
         {
-            this.flat = new HashSet<flat>();
+            this.Users = new HashSet<Users>();
         }
     
-        public int id { get; set; }
-        public string name { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Vladelez { get; set; }
+        public string Description { get; set; }
+        public Nullable<System.DateTime> DateCreate { get; set; }
+        public Nullable<int> IdStatus { get; set; }
+        public Nullable<decimal> StartDoxod { get; set; }
+        public Nullable<decimal> EndDoxod { get; set; }
+        public Nullable<decimal> PriceMagazin { get; set; }
+        public Nullable<System.DateTime> DateStart { get; set; }
+        public Nullable<System.DateTime> DateEnd { get; set; }
     
+        public virtual Status Status { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<flat> flat { get; set; }
+        public virtual ICollection<Users> Users { get; set; }
     }
 }

@@ -23,7 +23,7 @@ namespace Acro.View.Windows
         public ViewWindow()
         {
             InitializeComponent();
-            viewLV.ItemsSource = Connect.entities.flat.ToList();
+            //viewLV.ItemsSource = Connect.entities.flat.ToList();
         }
 
 
@@ -39,9 +39,9 @@ namespace Acro.View.Windows
             int high_amount_rooms = Convert
             .ToInt32(high_amount_rooms_tb.Text);
 
-            viewLV.ItemsSource = Connect.entities.flat.Where(i => i.rent_price <= high_price && i.rent_price >= low_price &&
-            i.amount_rooms >= low_amount_rooms && i.amount_rooms <= high_amount_rooms)
-                .OrderByDescending(i => i.rent_price).ToList();          
+            //viewLV.ItemsSource = Connect.entities.flat.Where(i => i.rent_price <= high_price && i.rent_price >= low_price &&
+            //i.amount_rooms >= low_amount_rooms && i.amount_rooms <= high_amount_rooms)
+            //    .OrderByDescending(i => i.rent_price).ToList();          
         }
     }
 }

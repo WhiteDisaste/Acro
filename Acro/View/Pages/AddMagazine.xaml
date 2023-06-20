@@ -9,9 +9,9 @@
       Title="AddMagazine">
 
     <Grid>
-        <TextBox HorizontalAlignment="Left" Margin="192,68,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Name="floor_tb"/>
-        <TextBox HorizontalAlignment="Left" Margin="192,102,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Name="floor_apat_tb"/>
-        <TextBox HorizontalAlignment="Left" Margin="192,139,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Name="amount_rooms_tb"/>
+        <TextBox HorizontalAlignment="Left" Margin="192,68,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Name="txtname"/>
+        <TextBox HorizontalAlignment="Left" Margin="192,102,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Name="txtdescrip"/>
+        <TextBox HorizontalAlignment="Left" Margin="192,139,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Name="txtvlad"/>
         
         <TextBlock HorizontalAlignment="Left" Margin="54,68,0,0" TextWrapping="Wrap" Text="Название магазина" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="54,98,0,0" TextWrapping="Wrap" Text="Описание" VerticalAlignment="Top"/>
@@ -22,10 +22,10 @@
 
         <DatePicker HorizontalAlignment="Left" Margin="641,64,0,0" VerticalAlignment="Top" Name="ya_kalendar"/>
         
-        <ComboBox HorizontalAlignment="Left" Margin="641,109,0,0" VerticalAlignment="Top" Width="120" Name="flat_status">
+        <ComboBox HorizontalAlignment="Left" Margin="641,109,0,0" VerticalAlignment="Top" Width="120" Name="txtstatus">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding name}"/>
+                    <TextBlock Text="{Binding Title}"/>
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>

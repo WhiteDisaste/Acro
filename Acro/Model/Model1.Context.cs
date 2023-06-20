@@ -13,10 +13,10 @@ namespace Acro.Model
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class AcroDeminEntities1 : DbContext
+    public partial class AliSqlEntities : DbContext
     {
-        public AcroDeminEntities1()
-            : base("name=AcroDeminEntities1")
+        public AliSqlEntities()
+            : base("name=AliSqlEntities")
         {
         }
     
@@ -25,12 +25,9 @@ namespace Acro.Model
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<flat> flat { get; set; }
-        public virtual DbSet<house> house { get; set; }
-        public virtual DbSet<login> login { get; set; }
-        public virtual DbSet<status> status { get; set; }
+        public virtual DbSet<Magazin> Magazin { get; set; }
+        public virtual DbSet<Status> Status { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
-        public virtual DbSet<toilet_type> toilet_type { get; set; }
-        public virtual DbSet<window> window { get; set; }
+        public virtual DbSet<Users> Users { get; set; }
     }
 }

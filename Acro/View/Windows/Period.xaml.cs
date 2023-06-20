@@ -26,13 +26,13 @@ namespace Acro.View.Windows
         }
         private void check_period_btn_Click(object sender, RoutedEventArgs e)
         {
-            var rent_of_cost = Connect.entities.house.ToList();
+            var rent_of_cost = Connect.entities.Magazin.ToList();
 
             List<string> GAP = new List<string>();
 
-            foreach (house ha in rent_of_cost)
+            foreach (Magazin ha in rent_of_cost)
             {
-                GAP.Add($"{ha.adress} принесла прибыль от аренды: {ha.rent_price}");
+                GAP.Add($"{ha.Name} принесла прибыль в начале периода: {ha.StartDoxod}");
             }
 
             string final_sting = "";
@@ -42,7 +42,7 @@ namespace Acro.View.Windows
                 final_sting += str + "\n";
             }
 
-            var summary_price = Connect.entities.house.Sum(o => o.rent_price).ToString();
+            var summary_price = Connect.entities.Magazin.Sum(o => o.EndDoxod).ToString();
 
             MessageBox.Show($"{final_sting} \n общая прибыль:{summary_price}");
 
@@ -60,9 +60,7 @@ namespace Acro.View.Windows
         }
 
         private void back_to_market_view_btn_Click(object sender, RoutedEventArgs e)
-        {
-            ViewMarket vm = new ViewMarket();
-            vm.Show();
+        {           
             this.Close();
         }
     }

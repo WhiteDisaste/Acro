@@ -8,6 +8,6 @@ namespace Acro.Model
 {
     internal class Connect
     {
-        public static AcroDeminEntities1 entities = new AcroDeminEntities1();
+        public static AliSqlEntities entities = new AliSqlEntities();
     }
 }

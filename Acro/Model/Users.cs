@@ -12,18 +12,14 @@ namespace Acro.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class toilet_type
+    public partial class Users
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public toilet_type()
-        {
-            this.flat = new HashSet<flat>();
-        }
+        public int Id { get; set; }
+        public string Login { get; set; }
+        public string Password { get; set; }
+        public string Telephone { get; set; }
+        public Nullable<int> IdMagazin { get; set; }
     
-        public int id { get; set; }
-        public string name { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<flat> flat { get; set; }
+        public virtual Magazin Magazin { get; set; }
     }
 }

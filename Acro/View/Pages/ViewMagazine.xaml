@@ -17,11 +17,11 @@
         <ListView Name="LV" Grid.ColumnSpan="2">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Название магазина" DisplayMemberBinding="{Binding id}"/>
-                    <GridViewColumn Header="Год создания" DisplayMemberBinding="{Binding floor_apart}"/>
-                    <GridViewColumn Header="Описание" DisplayMemberBinding="{Binding amount_rooms}"/>
-                    <GridViewColumn Header="Владелец" DisplayMemberBinding="{Binding cad_price}"/>
-                    <GridViewColumn Header="Статус услуги" DisplayMemberBinding="{Binding flat_status}"/>
+                    <GridViewColumn Header="Название магазина" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="Год создания" DisplayMemberBinding="{Binding DateCreate}"/>
+                    <GridViewColumn Header="Описание" DisplayMemberBinding="{Binding Description}"/>
+                    <GridViewColumn Header="Владелец" DisplayMemberBinding="{Binding Vladelez}"/>
+                    <GridViewColumn Header="Статус услуги" DisplayMemberBinding="{Binding Status.Title}"/>
                 </GridView>
             </ListView.View>
         </ListView>

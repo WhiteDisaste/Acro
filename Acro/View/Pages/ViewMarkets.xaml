@@ -17,11 +17,11 @@
                   SelectionChanged="view_market_agent_SelectionChanged">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="название магазина" DisplayMemberBinding="{Binding id}"/>
-                    <GridViewColumn Header="статус магазина" DisplayMemberBinding="{Binding status.name}"/>
-                    <GridViewColumn Header="стоимость магазина" DisplayMemberBinding="{Binding cad_price}"/>
-                    <GridViewColumn Header="доход в начале года" DisplayMemberBinding="{Binding market_price}"/>
-                    <GridViewColumn Header="доход в конце года" DisplayMemberBinding="{Binding rent_price}"/>
+                    <GridViewColumn Header="название магазина" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="статус магазина" DisplayMemberBinding="{Binding Status.Title}"/>
+                    <GridViewColumn Header="стоимость магазина" DisplayMemberBinding="{Binding PriceMagazin}"/>
+                    <GridViewColumn Header="доход в начале года" DisplayMemberBinding="{Binding StartDoxod}"/>
+                    <GridViewColumn Header="доход в конце года" DisplayMemberBinding="{Binding EndDoxod}"/>
                 </GridView>
             </ListView.View>
         </ListView>

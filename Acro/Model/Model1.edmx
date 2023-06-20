@@ -4,50 +4,29 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Хранилище AcroDeminModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="flat">
+    <Schema Namespace="Хранилище AliSqlModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Magazin">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" />
-          <Property Name="floor" Type="int" />
-          <Property Name="floor_apart" Type="int" />
-          <Property Name="date_build" Type="date" />
-          <Property Name="window_placement" Type="int" />
-          <Property Name="amount_rooms" Type="int" />
-          <Property Name="amount_toilet" Type="int" />
-          <Property Name="toilet_type" Type="int" />
-          <Property Name="have_cond" Type="bit" />
-          <Property Name="cad_price" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="market_price" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="rent_price" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="flat_status" Type="int" />
-          <Property Name="adress" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Vladelez" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="DateCreate" Type="date" />
+          <Property Name="IdStatus" Type="int" />
+          <Property Name="StartDoxod" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="EndDoxod" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="PriceMagazin" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="DateStart" Type="date" />
+          <Property Name="DateEnd" Type="date" />
         </EntityType>
-        <EntityType Name="house">
+        <EntityType Name="Status">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="nvarchar" MaxLength="50" />
-          <Property Name="adress" Type="nvarchar" MaxLength="50" />
-          <Property Name="rent_price" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="flat_status" Type="int" />
-        </EntityType>
-        <EntityType Name="login">
-          <Key>
-            <PropertyRef Name="login" />
-          </Key>
-          <Property Name="login" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="password" Type="nvarchar" MaxLength="50" />
-          <Property Name="role" Type="nvarchar" MaxLength="50" />
-        </EntityType>
-        <EntityType Name="status">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -59,171 +38,97 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
-        <EntityType Name="toilet_type">
+        <EntityType Name="Users">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Login" Type="nvarchar(max)" />
+          <Property Name="Password" Type="nvarchar(max)" />
+          <Property Name="Telephone" Type="nvarchar(max)" />
+          <Property Name="IdMagazin" Type="int" />
         </EntityType>
-        <EntityType Name="window">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="nvarchar" MaxLength="50" />
-        </EntityType>
-        <Association Name="FK_flat_status">
-          <End Role="status" Type="Self.status" Multiplicity="0..1" />
-          <End Role="flat" Type="Self.flat" Multiplicity="*" />
+        <Association Name="FK_Magazin_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+          <End Role="Magazin" Type="Self.Magazin" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="status">
-              <PropertyRef Name="id" />
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="flat">
-              <PropertyRef Name="flat_status" />
+            <Dependent Role="Magazin">
+              <PropertyRef Name="IdStatus" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_flat_toilet_type">
-          <End Role="toilet_type" Type="Self.toilet_type" Multiplicity="0..1" />
-          <End Role="flat" Type="Self.flat" Multiplicity="*" />
+        <Association Name="FK_Users_Magazin">
+          <End Role="Magazin" Type="Self.Magazin" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="toilet_type">
-              <PropertyRef Name="id" />
+            <Principal Role="Magazin">
+              <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="flat">
-              <PropertyRef Name="toilet_type" />
+            <Dependent Role="Users">
+              <PropertyRef Name="IdMagazin" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_flat_window">
-          <End Role="window" Type="Self.window" Multiplicity="0..1" />
-          <End Role="flat" Type="Self.flat" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="window">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="flat">
-              <PropertyRef Name="window_placement" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_house_status">
-          <End Role="status" Type="Self.status" Multiplicity="0..1" />
-          <End Role="house" Type="Self.house" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="status">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="house">
-              <PropertyRef Name="flat_status" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="Хранилище AcroDeminModelContainer">
-          <EntitySet Name="flat" EntityType="Self.flat" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="house" EntityType="Self.house" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="login" EntityType="Self.login" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="status" EntityType="Self.status" Schema="dbo" store:Type="Tables" />
+        <EntityContainer Name="Хранилище AliSqlModelContainer">
+          <EntitySet Name="Magazin" EntityType="Self.Magazin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="toilet_type" EntityType="Self.toilet_type" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="window" EntityType="Self.window" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_flat_status" Association="Self.FK_flat_status">
-            <End Role="status" EntitySet="status" />
-            <End Role="flat" EntitySet="flat" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Magazin_Status" Association="Self.FK_Magazin_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Magazin" EntitySet="Magazin" />
           </AssociationSet>
-          <AssociationSet Name="FK_flat_toilet_type" Association="Self.FK_flat_toilet_type">
-            <End Role="toilet_type" EntitySet="toilet_type" />
-            <End Role="flat" EntitySet="flat" />
-          </AssociationSet>
-          <AssociationSet Name="FK_flat_window" Association="Self.FK_flat_window">
-            <End Role="window" EntitySet="window" />
-            <End Role="flat" EntitySet="flat" />
-          </AssociationSet>
-          <AssociationSet Name="FK_house_status" Association="Self.FK_house_status">
-            <End Role="status" EntitySet="status" />
-            <End Role="house" EntitySet="house" />
+          <AssociationSet Name="FK_Users_Magazin" Association="Self.FK_Users_Magazin">
+            <End Role="Magazin" EntitySet="Magazin" />
+            <End Role="Users" EntitySet="Users" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="AcroDeminModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="AcroDeminEntities1" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="flat" EntityType="AcroDeminModel.flat" />
-          <EntitySet Name="house" EntityType="AcroDeminModel.house" />
-          <EntitySet Name="login" EntityType="AcroDeminModel.login" />
-          <EntitySet Name="status" EntityType="AcroDeminModel.status" />
-          <EntitySet Name="sysdiagrams" EntityType="AcroDeminModel.sysdiagrams" />
-          <EntitySet Name="toilet_type" EntityType="AcroDeminModel.toilet_type" />
-          <EntitySet Name="window" EntityType="AcroDeminModel.window" />
-          <AssociationSet Name="FK_flat_status" Association="AcroDeminModel.FK_flat_status">
-            <End Role="status" EntitySet="status" />
-            <End Role="flat" EntitySet="flat" />
+      <Schema Namespace="AliSqlModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="AliSqlEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Magazin" EntityType="AliSqlModel.Magazin" />
+          <EntitySet Name="Status" EntityType="AliSqlModel.Status" />
+          <EntitySet Name="sysdiagrams" EntityType="AliSqlModel.sysdiagrams" />
+          <EntitySet Name="Users" EntityType="AliSqlModel.Users" />
+          <AssociationSet Name="FK_Magazin_Status" Association="AliSqlModel.FK_Magazin_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Magazin" EntitySet="Magazin" />
           </AssociationSet>
-          <AssociationSet Name="FK_flat_toilet_type" Association="AcroDeminModel.FK_flat_toilet_type">
-            <End Role="toilet_type" EntitySet="toilet_type" />
-            <End Role="flat" EntitySet="flat" />
-          </AssociationSet>
-          <AssociationSet Name="FK_flat_window" Association="AcroDeminModel.FK_flat_window">
-            <End Role="window" EntitySet="window" />
-            <End Role="flat" EntitySet="flat" />
-          </AssociationSet>
-          <AssociationSet Name="FK_house_status" Association="AcroDeminModel.FK_house_status">
-            <End Role="status" EntitySet="status" />
-            <End Role="house" EntitySet="house" />
+          <AssociationSet Name="FK_Users_Magazin" Association="AliSqlModel.FK_Users_Magazin">
+            <End Role="Magazin" EntitySet="Magazin" />
+            <End Role="Users" EntitySet="Users" />
           </AssociationSet>
         </EntityContainer>
-        <EntityType Name="flat">
+        <EntityType Name="Magazin">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="floor" Type="Int32" />
-          <Property Name="floor_apart" Type="Int32" />
-          <Property Name="date_build" Type="DateTime" Precision="0" />
-          <Property Name="window_placement" Type="Int32" />
-          <Property Name="amount_rooms" Type="Int32" />
-          <Property Name="amount_toilet" Type="Int32" />
-          <Property Name="toilet_type" Type="Int32" />
-          <Property Name="have_cond" Type="Boolean" />
-          <Property Name="cad_price" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="market_price" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="rent_price" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="flat_status" Type="Int32" />
-          <Property Name="adress" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="status" Relationship="AcroDeminModel.FK_flat_status" FromRole="flat" ToRole="status" />
-          <NavigationProperty Name="toilet_type1" Relationship="AcroDeminModel.FK_flat_toilet_type" FromRole="flat" ToRole="toilet_type" />
-          <NavigationProperty Name="window" Relationship="AcroDeminModel.FK_flat_window" FromRole="flat" ToRole="window" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Vladelez" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateCreate" Type="DateTime" Precision="0" />
+          <Property Name="IdStatus" Type="Int32" />
+          <Property Name="StartDoxod" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="EndDoxod" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="PriceMagazin" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="DateStart" Type="DateTime" Precision="0" />
+          <Property Name="DateEnd" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Status" Relationship="AliSqlModel.FK_Magazin_Status" FromRole="Magazin" ToRole="Status" />
+          <NavigationProperty Name="Users" Relationship="AliSqlModel.FK_Users_Magazin" FromRole="Magazin" ToRole="Users" />
         </EntityType>
-        <EntityType Name="house">
+        <EntityType Name="Status">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="adress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="rent_price" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="flat_status" Type="Int32" />
-          <NavigationProperty Name="status" Relationship="AcroDeminModel.FK_house_status" FromRole="house" ToRole="status" />
-        </EntityType>
-        <EntityType Name="login">
-          <Key>
-            <PropertyRef Name="login1" />
-          </Key>
-          <Property Name="login1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="status">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="flat" Relationship="AcroDeminModel.FK_flat_status" FromRole="status" ToRole="flat" />
-          <NavigationProperty Name="house" Relationship="AcroDeminModel.FK_house_status" FromRole="status" ToRole="house" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Magazin" Relationship="AliSqlModel.FK_Magazin_Status" FromRole="Status" ToRole="Magazin" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -235,67 +140,38 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
-        <EntityType Name="toilet_type">
+        <EntityType Name="Users">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="flat" Relationship="AcroDeminModel.FK_flat_toilet_type" FromRole="toilet_type" ToRole="flat" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Telephone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IdMagazin" Type="Int32" />
+          <NavigationProperty Name="Magazin" Relationship="AliSqlModel.FK_Users_Magazin" FromRole="Users" ToRole="Magazin" />
         </EntityType>
-        <EntityType Name="window">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="flat" Relationship="AcroDeminModel.FK_flat_window" FromRole="window" ToRole="flat" />
-        </EntityType>
-        <Association Name="FK_flat_status">
-          <End Type="AcroDeminModel.status" Role="status" Multiplicity="0..1" />
-          <End Type="AcroDeminModel.flat" Role="flat" Multiplicity="*" />
+        <Association Name="FK_Magazin_Status">
+          <End Type="AliSqlModel.Status" Role="Status" Multiplicity="0..1" />
+          <End Type="AliSqlModel.Magazin" Role="Magazin" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="status">
-              <PropertyRef Name="id" />
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="flat">
-              <PropertyRef Name="flat_status" />
+            <Dependent Role="Magazin">
+              <PropertyRef Name="IdStatus" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_flat_toilet_type">
-          <End Type="AcroDeminModel.toilet_type" Role="toilet_type" Multiplicity="0..1" />
-          <End Type="AcroDeminModel.flat" Role="flat" Multiplicity="*" />
+        <Association Name="FK_Users_Magazin">
+          <End Type="AliSqlModel.Magazin" Role="Magazin" Multiplicity="0..1" />
+          <End Type="AliSqlModel.Users" Role="Users" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="toilet_type">
-              <PropertyRef Name="id" />
+            <Principal Role="Magazin">
+              <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="flat">
-              <PropertyRef Name="toilet_type" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_flat_window">
-          <End Type="AcroDeminModel.window" Role="window" Multiplicity="0..1" />
-          <End Type="AcroDeminModel.flat" Role="flat" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="window">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="flat">
-              <PropertyRef Name="window_placement" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_house_status">
-          <End Type="AcroDeminModel.status" Role="status" Multiplicity="0..1" />
-          <End Type="AcroDeminModel.house" Role="house" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="status">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="house">
-              <PropertyRef Name="flat_status" />
+            <Dependent Role="Users">
+              <PropertyRef Name="IdMagazin" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -304,57 +180,34 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище AcroDeminModelContainer" CdmEntityContainer="AcroDeminEntities1">
-          <EntitySetMapping Name="flat">
-            <EntityTypeMapping TypeName="AcroDeminModel.flat">
-              <MappingFragment StoreEntitySet="flat">
-                <ScalarProperty Name="adress" ColumnName="adress" />
-                <ScalarProperty Name="flat_status" ColumnName="flat_status" />
-                <ScalarProperty Name="rent_price" ColumnName="rent_price" />
-                <ScalarProperty Name="market_price" ColumnName="market_price" />
-                <ScalarProperty Name="cad_price" ColumnName="cad_price" />
-                <ScalarProperty Name="have_cond" ColumnName="have_cond" />
-                <ScalarProperty Name="toilet_type" ColumnName="toilet_type" />
-                <ScalarProperty Name="amount_toilet" ColumnName="amount_toilet" />
-                <ScalarProperty Name="amount_rooms" ColumnName="amount_rooms" />
-                <ScalarProperty Name="window_placement" ColumnName="window_placement" />
-                <ScalarProperty Name="date_build" ColumnName="date_build" />
-                <ScalarProperty Name="floor_apart" ColumnName="floor_apart" />
-                <ScalarProperty Name="floor" ColumnName="floor" />
-                <ScalarProperty Name="id" ColumnName="id" />
+        <EntityContainerMapping StorageEntityContainer="Хранилище AliSqlModelContainer" CdmEntityContainer="AliSqlEntities">
+          <EntitySetMapping Name="Magazin">
+            <EntityTypeMapping TypeName="AliSqlModel.Magazin">
+              <MappingFragment StoreEntitySet="Magazin">
+                <ScalarProperty Name="DateEnd" ColumnName="DateEnd" />
+                <ScalarProperty Name="DateStart" ColumnName="DateStart" />
+                <ScalarProperty Name="PriceMagazin" ColumnName="PriceMagazin" />
+                <ScalarProperty Name="EndDoxod" ColumnName="EndDoxod" />
+                <ScalarProperty Name="StartDoxod" ColumnName="StartDoxod" />
+                <ScalarProperty Name="IdStatus" ColumnName="IdStatus" />
+                <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Vladelez" ColumnName="Vladelez" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="house">
-            <EntityTypeMapping TypeName="AcroDeminModel.house">
-              <MappingFragment StoreEntitySet="house">
-                <ScalarProperty Name="flat_status" ColumnName="flat_status" />
-                <ScalarProperty Name="rent_price" ColumnName="rent_price" />
-                <ScalarProperty Name="adress" ColumnName="adress" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="login">
-            <EntityTypeMapping TypeName="AcroDeminModel.login">
-              <MappingFragment StoreEntitySet="login">
-                <ScalarProperty Name="role" ColumnName="role" />
-                <ScalarProperty Name="password" ColumnName="password" />
-                <ScalarProperty Name="login1" ColumnName="login" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="status">
-            <EntityTypeMapping TypeName="AcroDeminModel.status">
-              <MappingFragment StoreEntitySet="status">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="id" ColumnName="id" />
+          <EntitySetMapping Name="Status">
+            <EntityTypeMapping TypeName="AliSqlModel.Status">
+              <MappingFragment StoreEntitySet="Status">
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="AcroDeminModel.sysdiagrams">
+            <EntityTypeMapping TypeName="AliSqlModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="definition" ColumnName="definition" />
                 <ScalarProperty Name="version" ColumnName="version" />
@@ -364,19 +217,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="toilet_type">
-            <EntityTypeMapping TypeName="AcroDeminModel.toilet_type">
-              <MappingFragment StoreEntitySet="toilet_type">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="window">
-            <EntityTypeMapping TypeName="AcroDeminModel.window">
-              <MappingFragment StoreEntitySet="window">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="id" ColumnName="id" />
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="AliSqlModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="IdMagazin" ColumnName="IdMagazin" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

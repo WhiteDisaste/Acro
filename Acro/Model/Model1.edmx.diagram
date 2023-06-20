@@ -4,18 +4,13 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="8732340333af4081b11a4c71cd1e0638" Name="Diagram1">
-        <EntityTypeShape EntityType="AcroDeminModel.flat" Width="1.5" PointX="3" PointY="2.625" />
-        <EntityTypeShape EntityType="AcroDeminModel.house" Width="1.5" PointX="3" PointY="8.75" />
-        <EntityTypeShape EntityType="AcroDeminModel.login" Width="1.5" PointX="5.75" PointY="0.75" />
-        <EntityTypeShape EntityType="AcroDeminModel.status" Width="1.5" PointX="0.75" PointY="3.875" />
-        <EntityTypeShape EntityType="AcroDeminModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="3.75" />
-        <EntityTypeShape EntityType="AcroDeminModel.toilet_type" Width="1.5" PointX="0.75" PointY="0.875" />
-        <EntityTypeShape EntityType="AcroDeminModel.window" Width="1.5" PointX="0.75" PointY="7.125" />
-        <AssociationConnector Association="AcroDeminModel.FK_flat_status" />
-        <AssociationConnector Association="AcroDeminModel.FK_flat_toilet_type" />
-        <AssociationConnector Association="AcroDeminModel.FK_flat_window" />
-        <AssociationConnector Association="AcroDeminModel.FK_house_status" />
+      <Diagram DiagramId="cf4e55b84ad64cba803a6c7b0ccc279c" Name="Diagram1">
+        <EntityTypeShape EntityType="AliSqlModel.Magazin" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="AliSqlModel.Status" Width="1.5" PointX="0.75" PointY="2" />
+        <EntityTypeShape EntityType="AliSqlModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="5.75" />
+        <EntityTypeShape EntityType="AliSqlModel.Users" Width="1.5" PointX="5.25" PointY="1.625" />
+        <AssociationConnector Association="AliSqlModel.FK_Magazin_Status" />
+        <AssociationConnector Association="AliSqlModel.FK_Users_Magazin" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
