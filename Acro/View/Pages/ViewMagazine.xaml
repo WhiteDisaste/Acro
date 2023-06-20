@@ -1,0 +1,29 @@
+﻿<Page x:Class="Acro.View.Pages.ViewMagazine"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Acro.View.Pages"
+      mc:Ignorable="d" 
+      Title="ViewMagazine">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <ListView Name="LV" Grid.ColumnSpan="2">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Название магазина" DisplayMemberBinding="{Binding id}"/>
+                    <GridViewColumn Header="Год создания" DisplayMemberBinding="{Binding floor_apart}"/>
+                    <GridViewColumn Header="Описание" DisplayMemberBinding="{Binding amount_rooms}"/>
+                    <GridViewColumn Header="Владелец" DisplayMemberBinding="{Binding cad_price}"/>
+                    <GridViewColumn Header="Статус услуги" DisplayMemberBinding="{Binding flat_status}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</Page>

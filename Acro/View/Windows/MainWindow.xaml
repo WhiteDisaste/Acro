@@ -9,13 +9,14 @@
         Title="MainWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen" WindowStyle="None">
     <Grid>
         <Button Content="Авторизация" HorizontalAlignment="Left" Margin="93,294,0,0" VerticalAlignment="Top" Height="31" Width="126" Name="au_btn" Click="au_btn_Click"/>
+        <Button Background="{x:Null}" Content="Регистрация" HorizontalAlignment="Left" Margin="93,344,0,0" VerticalAlignment="Top" Height="31" Width="126" Name="reg_btn" Foreground="#FF00BCD4"/>
         <TextBlock FontSize="18" HorizontalAlignment="Left" Margin="89,112,0,0" TextWrapping="Wrap" Text="Логин" VerticalAlignment="Top" FontWeight="Bold"/>
         <TextBox HorizontalAlignment="Left" Margin="159,112,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Name="login_tbx"/>
         <TextBlock FontSize="18"  HorizontalAlignment="Left" Margin="89,176,0,0" TextWrapping="Wrap" Text="Пароль" VerticalAlignment="Top" FontWeight="Bold"/>
         <PasswordBox HorizontalAlignment="Left" Margin="159,175,0,0" VerticalAlignment="Top" Width="120" Name="password_pbx"/>
-        <Image Source="/Assets/2m4xTON6RDY.jpg" Margin="312,-2,89,217" />
-        <Image Source="/Assets/453_original.jpg" Margin="219,176,193,139" />
-        <Image Source="/Assets/agentstvo-nedvizhimosti-heops.jpg" Margin="443,176,1,146" />
-        <Image Source="/Assets/scale_1200.png" Margin="204,321,-48,10" />
+        <Image Source="/Assets/perek.jpg" Margin="312,2,89,217" />
+        <Image Source="/Assets/magnit.jpg" Margin="219,176,193,139" />
+        <Image Source="/Assets/miratorg.jpg" Margin="443,176,1,146" />
+        <Image Source="/Assets/puaterochka.jpg" Margin="204,321,-48,10" />
     </Grid>
 </Window>

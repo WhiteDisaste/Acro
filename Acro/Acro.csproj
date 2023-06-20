@@ -111,8 +111,26 @@
     <Compile Include="Model\window.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="View\Pages\AddMagazine.xaml.cs">
+      <DependentUpon>AddMagazine.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\DoxodMagazine.xaml.cs">
+      <DependentUpon>DoxodMagazine.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\ViewMagazine.xaml.cs">
+      <DependentUpon>ViewMagazine.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\ViewMarkets.xaml.cs">
+      <DependentUpon>ViewMarkets.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Windows\Add.xaml.cs">
       <DependentUpon>Add.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Windows\Authorization.xaml.cs">
+      <DependentUpon>Authorization.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Windows\Menu.xaml.cs">
+      <DependentUpon>Menu.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Windows\Period.xaml.cs">
       <DependentUpon>Period.xaml</DependentUpon>
@@ -126,7 +144,27 @@
     <Compile Include="View\Windows\ViewWindow.xaml.cs">
       <DependentUpon>ViewWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="View\Pages\AddMagazine.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\DoxodMagazine.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\ViewMagazine.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\ViewMarkets.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Windows\Add.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Windows\Authorization.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -142,6 +180,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\Windows\Menu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Windows\Period.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -195,15 +237,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\2m4xTON6RDY.jpg" />
-    <Resource Include="Assets\453_original.jpg" />
-    <Resource Include="Assets\agentstvo-nedvizhimosti-heops.jpg" />
-    <Resource Include="Assets\scale_1200.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Assets\magnit.jpg" />
+    <Resource Include="Assets\miratorg.jpg" />
+    <Resource Include="Assets\perek.jpg" />
+    <Resource Include="Assets\puaterochka.jpg" />
     <Content Include="Model\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
